@@ -32,8 +32,9 @@ button { cursor: pointer; }
 .skip-link:focus { transform: translateY(0); }
 
 .site-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem; padding-block: 1.65rem; border-bottom: 1px solid var(--line); }
-.brand { display: inline-flex; align-items: center; gap: .75rem; font: 700 1rem/1.4 var(--mono); text-decoration: none; }
+.brand { display: inline-flex; align-items: center; gap: .75rem; font: 700 1rem/1.4 var(--mono); text-decoration: none; min-width: 0; max-width: 100%; }
 .brand-mark { color: var(--accent); font-weight: 400; }
+.brand span:last-child { min-width: 0; overflow-wrap: break-word; }
 .header-nav { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem 2rem; }
 .header-nav a { color: var(--body); font-size: .9375rem; text-decoration: none; }
 .header-nav a:hover { color: var(--accent); }

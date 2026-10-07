@@ -1,4 +1,4 @@
-# cargo-build — Engineering Portfolio
+# Viacheslav Karakin — Engineering Portfolio
 
 A static Synthwave portfolio with a personal GitHub-avatar introduction, Python/Rust
 and Linux stack, and two project contexts: an anonymized Web2 video-streaming
@@ -101,8 +101,8 @@ manual run when republishing an unchanged revision is necessary.
 ## Content rules
 
 - MUST use generic project roles and conceptual mechanisms in published material.
-- MAY show the explicitly requested public cargo-build handle and avatar; do not
-  infer a full name or personal contact information.
+- MAY show the explicitly requested public name Viacheslav Karakin, cargo-build handle and avatar; do not
+  infer personal contact information.
 - MUST distinguish verified project stack, custom work, and upstream integrations.
 - SHOULD preserve the Synthwave palette and readable, unaltered diagram surfaces.
 - MUST omit employer and website identity, deployment aliases, real operational

@@ -18,8 +18,8 @@ Read `README.md` for the file map, preview, and publication workflow.
 - SHOULD preserve the profile-first Synthwave direction: dark violet, cyan/magenta
   accents, restrained glow, and readable diagram surfaces. MUST preserve responsive
   behavior, keyboard access, reduced-motion preference, and 200% text enlargement.
-- MAY show the explicitly requested public cargo-build GitHub handle and locally
-  stored avatar. DO NOT infer a full name, contact details, bio, or seniority.
+- MAY show the explicitly supplied public name Viacheslav Karakin, cargo-build
+  GitHub handle and locally stored avatar. DO NOT infer contact details, bio or seniority.
 - MUST distinguish the anonymized Web2 streaming platform from Web3-related private
   trading work, and upstream venue adapters from custom implementation.
 - MUST keep the personal 11/7 signature literal; do not turn it into a measured SLA.
