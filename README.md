@@ -27,7 +27,9 @@ or distributed exactly-once payment processing.
 | `.github/workflows/pages.yml` | Publish `site/` to GitHub Pages |
 
 Edit profile, project-stack, and case text directly in `site/index.html`.
-Keep the profile and two project contexts before the analytical cases. The 11/7
+Keep the profile and two project contexts before the analytical cases.
+Use a moderate personal-name heading with readable body and labels; avoid a giant
+name above tiny supporting text. Adjust responsive CSS overrides together. The 11/7
 work signature is personal copy, without an inferred availability commitment.
 The operator supplied video experience dates of February 2025–September 2026 and
 private HFT / Web3 project dates of September 2026–present. Update the latter end

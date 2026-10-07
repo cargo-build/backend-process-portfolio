@@ -18,6 +18,8 @@ Read `README.md` for the file map, preview, and publication workflow.
 - SHOULD preserve the profile-first Synthwave direction: dark violet, cyan/magenta
   accents, restrained glow, and readable diagram surfaces. MUST preserve responsive
   behavior, keyboard access, reduced-motion preference, and 200% text enlargement.
+- SHOULD keep a balanced readable type scale: moderate personal-name heading and
+  sufficiently large supporting body, labels and navigation.
 - MAY show the explicitly supplied public name Viacheslav Karakin, cargo-build
   GitHub handle and locally stored avatar. DO NOT infer contact details, bio or seniority.
 - MUST distinguish the anonymized Web2 streaming platform from Web3-related private
