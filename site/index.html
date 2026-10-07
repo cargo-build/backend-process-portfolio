@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Three Rust backend and operations case studies, explained through seven editable process models, design decisions, and explicit evidence boundaries.">
+    <meta name="theme-color" content="#102732">
+    <title>Systems Portfolio — Rust backend &amp; process modelling</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23102732'/%3E%3Cpath d='M18 18h28v8H26v12h20v8H18z' fill='%23ff683a'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Systems Portfolio, back to top">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>Systems<br>Portfolio</span>
+      </a>
+      <nav class="header-nav" aria-label="Case studies">
+        <a href="#purchase-intent"><span>01</span> Purchase intent</a>
+        <a href="#telemetry"><span>02</span> Telemetry</a>
+        <a href="#mobile-operations"><span>03</span> Mobile operations</a>
+      </nav>
+      <a class="header-download" href="assets/portfolio.pdf" download="systems-portfolio.pdf">Portfolio PDF</a>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Rust backend engineering &amp; process modelling</p>
+          <h1 id="hero-title">Make the<br>system <em>legible.</em></h1>
+          <p class="hero-description">Follow the request. Locate the state change. Make the failure boundary explicit.</p>
+          <p class="hero-context">Three case studies connect backend mechanisms to the people and operations around them. Seven process models make the decisions inspectable.</p>
+          <div class="hero-actions">
+            <a class="button button-accent" href="#case-studies">Explore the cases</a>
+            <a class="hero-text-link" href="assets/portfolio.pdf" download="systems-portfolio.pdf">Download portfolio PDF</a>
+          </div>
+          <dl class="hero-facts">
+            <div><dt>Cases</dt><dd>03</dd></div>
+            <div><dt>Models</dt><dd>07</dd></div>
+            <div class="hero-facts-format"><dt>Material</dt><dd>Process · State · Data</dd></div>
+          </dl>
+        </div>
+        <div class="hero-work">
+          <div class="hero-work-heading">
+            <p class="eyebrow">A closer look / Case 01</p>
+            <span class="work-dot" aria-hidden="true"></span>
+          </div>
+          <a class="hero-preview" href="assets/diagrams/01-purchase-process.svg" data-view-diagram="0" aria-label="View the purchase-intent process diagram at full size">
+            <img src="assets/diagrams/01-purchase-process.svg" width="1801" height="1121" alt="Purchase workflow across customer, payment processing, provider, access processing, and support; an eligible intent claim precedes access dispatch.">
+            <span class="preview-label">View full-size process model</span>
+          </a>
+          <div class="hero-work-caption">
+            <span class="hero-model-number" aria-hidden="true">01</span>
+            <div>
+              <h2>One claim.<br>A clear boundary.</h2>
+              <p>A transactional claim controls access dispatch. The provider charge and remote access call remain separate operations.</p>
+              <a href="#purchase-intent">Read the purchase case</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-index content-width" id="case-studies" aria-labelledby="index-title">
+        <div class="index-introduction">
+          <p class="eyebrow">Selected systems</p>
+          <h2 id="index-title">Three contexts.<br>Shared discipline.</h2>
+          <p>Understand ownership, preserve evidence, and separate a useful guarantee from the limits around it.</p>
+        </div>
+        <ol class="case-list">
+          <li>
+            <a href="#purchase-intent">
+              <span class="index-number">01</span>
+              <span class="index-item"><strong>Purchase intent</strong><span>Repeated checkout, controlled access processing</span></span>
+              <span class="index-count">3 models</span>
+            </a>
+          </li>
+          <li>
+            <a href="#telemetry">
+              <span class="index-number">02</span>
+              <span class="index-item"><strong>Distributed telemetry</strong><span>Durable collection, qualified local analysis</span></span>
+              <span class="index-count">2 models</span>
+            </a>
+          </li>
+          <li>
+            <a href="#mobile-operations">
+              <span class="index-number">03</span>
+              <span class="index-item"><strong>Mobile operations</strong><span>Remote terminal, scoped agent, local evidence</span></span>
+              <span class="index-count">2 models</span>
+            </a>
+          </li>
+        </ol>
+      </section>
+
+      <article class="case-section content-width" id="purchase-intent" aria-labelledby="purchase-title">
+        <header class="case-heading">
+          <p class="case-number" aria-hidden="true">01<span>Purchase intent</span></p>
+          <div class="case-heading-copy">
+            <p class="eyebrow">Case study 01 / Transactional state &amp; remote effects</p>
+            <h2 id="purchase-title">Repeated checkout.<br>Controlled access.</h2>
+            <p class="case-lead">Checkout attempts and callback retries can repeat downstream access work. A purchase intent groups matching owner-and-plan attempts under one active lifecycle.</p>
+            <ul class="technology-list" aria-label="Case technologies and concepts">
+              <li>Rust</li><li>Transactional claim</li><li>Callback processing</li><li>State modelling</li>
+            </ul>
+          </div>
+        </header>
+
+        <aside class="boundary" aria-labelledby="purchase-boundary">
+          <p class="boundary-label" id="purchase-boundary">Guarantee boundary</p>
+          <p>The claim controls repeated <strong>access processing</strong>. It does not prevent the provider charging twice or establish distributed exactly-once behavior. The database commit and remote access RPC do not share a transaction.</p>
+        </aside>
+
+        <div class="case-reading-grid">
+          <section aria-labelledby="purchase-mechanism">
+            <h3 id="purchase-mechanism">The mechanism</h3>
+            <p>Find the matching unused owner-and-plan intent, or create one. Each checkout offer retains a snapshot of its token; matching attempts share the active token.</p>
+            <p>An eligible callback atomically consumes the intent, records the payment reference, and rotates the token <strong>before</strong> the remote access RPC. A duplicate claim skips repeated access and requests a best-effort support ticket.</p>
+          </section>
+          <section aria-labelledby="purchase-choice">
+            <h3 id="purchase-choice">The design choice</h3>
+            <p>The intent represents a purchase lifecycle; the offer represents an individual attempt. The offer's token snapshot remains useful after the current intent token changes.</p>
+            <p>This is temporal correlation, rather than a stable foreign key. A later purchase creates a new active row; a consumed row remains consumed.</p>
+          </section>
+          <section class="evidence-column" aria-labelledby="purchase-evidence">
+            <h3 id="purchase-evidence">What the evidence supports</h3>
+            <p>A reviewed feature snapshot and historical local verification support matching registered-buyer token reuse. The models describe the claim and dispatch contracts.</p>
+            <p>Production rollout, fresh concurrent runtime verification, and business-impact measurements are not asserted.</p>
+          </section>
+        </div>
+
+        <figure class="diagram-plate" data-diagram="0">
+          <figcaption>
+            <div><span class="figure-index">Model 01 / Process</span><h3>From checkout to access processing</h3></div>
+            <a class="diagram-link" href="assets/diagrams/01-purchase-process.svg" data-view-diagram="0">View full size</a>
+          </figcaption>
+          <a class="diagram-image-link" href="assets/diagrams/01-purchase-process.svg" data-view-diagram="0" aria-label="View model 01, purchase-intent process, at full size">
+            <img src="assets/diagrams/01-purchase-process.svg" width="1801" height="1121" loading="lazy" alt="Swimlane process for purchase-intent checkout and callback handling, including eligible claim, repeated-access suppression, and best-effort support escalation.">
+          </a>
+          <p class="figure-note">The transactional decision happens before the remote access boundary.</p>
+        </figure>
+
+        <div class="paired-diagrams">
+          <figure class="diagram-plate" data-diagram="1">
+            <figcaption>
+              <div><span class="figure-index">Model 02 / State</span><h3>The intent lifecycle</h3></div>
+              <a class="diagram-link" href="assets/diagrams/02-intent-lifecycle.svg" data-view-diagram="1">View full size</a>
+            </figcaption>
+            <a class="diagram-image-link" href="assets/diagrams/02-intent-lifecycle.svg" data-view-diagram="1" aria-label="View model 02, intent lifecycle, at full size">
+              <img src="assets/diagrams/02-intent-lifecycle.svg" width="1801" height="1121" loading="lazy" alt="Purchase-intent states and decision rules: active intent, atomic consumption and token rotation, subsequent purchase, and compatibility paths.">
+            </a>
+            <p class="figure-note">Separate a reusable active intent from a consumed lifecycle.</p>
+          </figure>
+          <figure class="diagram-plate" data-diagram="2">
+            <figcaption>
+              <div><span class="figure-index">Model 03 / Data</span><h3>Intent, offer, callback</h3></div>
+              <a class="diagram-link" href="assets/diagrams/03-purchase-information-model.svg" data-view-diagram="2">View full size</a>
+            </figcaption>
+            <a class="diagram-image-link" href="assets/diagrams/03-purchase-information-model.svg" data-view-diagram="2" aria-label="View model 03, purchase information model, at full size">
+              <img src="assets/diagrams/03-purchase-information-model.svg" width="1801" height="1121" loading="lazy" alt="Conceptual purchase information model distinguishing owner, product plan, purchase intent, checkout offer with token snapshot, payment callback, and access request.">
+            </a>
+            <p class="figure-note">Keep lifecycle identity separate from checkout-attempt identity.</p>
+          </figure>
+        </div>
+
+        <details class="case-details">
+          <summary>Compatibility paths and unresolved recovery</summary>
+          <div class="details-content">
+            <p><strong>Fail-open paths:</strong> a missing legacy token or a claim-store error continues through compatibility handling. Checkout creation errors propagate. Strict suppression is therefore reduced when the claim cannot be established.</p>
+            <p><strong>Ownership validation:</strong> anonymous visitor and checkout-session precedence differ in the reviewed creation and lookup paths. Anonymous reuse remains a known validation gap.</p>
+            <p><strong>After consumption:</strong> a failed access RPC needs recovery or reconciliation. Recurring subscription events retain their existing processing path. Useful measurements include suppressed dispatches, claim errors, ticket-delivery failures, and downstream failures after consumption.</p>
+          </div>
+        </details>
+        <p class="case-visible-limit"><strong>Known limit:</strong> legacy tokens and claim-store errors fail open; anonymous reuse is not verified. Review this mechanism as a feature snapshot.</p>
+      </article>
+
+      <article class="case-section content-width" id="telemetry" aria-labelledby="telemetry-title">
+        <header class="case-heading">
+          <p class="case-number" aria-hidden="true">02<span>Distributed telemetry</span></p>
+          <div class="case-heading-copy">
+            <p class="eyebrow">Case study 02 / Durability, lineage &amp; coverage</p>
+            <h2 id="telemetry-title">Collect observations.<br>Preserve the evidence.</h2>
+            <p class="case-lead">Two node agents push bounded telemetry to a collector. A workstation fetches retained records, archives the raw evidence, and projects typed rows into a local SQL store.</p>
+            <ul class="technology-list" aria-label="Case technologies and concepts">
+              <li>Rust</li><li>mTLS gRPC</li><li>redb</li><li>zstd</li><li>GreptimeDB</li><li>PostgreSQL wire</li>
+            </ul>
+          </div>
+        </header>
+
+        <aside class="boundary" aria-labelledby="telemetry-boundary">
+          <p class="boundary-label" id="telemetry-boundary">Coverage boundary</p>
+          <p>The collector retains records for <strong>36 hours</strong>, regardless of workstation acknowledgement or availability. A cursor behind that history yields an explicit gap. Missing observations remain <strong>unknown</strong>; they are not zero.</p>
+        </aside>
+
+        <div class="case-reading-grid">
+          <section aria-labelledby="telemetry-mechanism">
+            <h3 id="telemetry-mechanism">The mechanism</h3>
+            <p>Agents initiate outbound mTLS gRPC publishing. The collector commits to durable redb storage before acknowledging a batch. The workstation initiates authenticated cursor-based fetches.</p>
+            <p>Compressed raw parts, checksums, and a durable manifest precede durable fetch-checkpoint advancement. Typed SQL projection uses GreptimeDB through the PostgreSQL wire protocol, with a local-only listener.</p>
+          </section>
+          <section aria-labelledby="telemetry-choice">
+            <h3 id="telemetry-choice">The design choice</h3>
+            <p>Structural identity includes host, stream, process run, source generation, and sequence. Identical bytes replay safely; changed bytes under the same identity are a conflict.</p>
+            <p>A raw archive plus SQL projection keeps evidence replayable and questions convenient. The cost is two representations, explicit checkpoints, and projection-retry work.</p>
+          </section>
+          <section class="evidence-column" aria-labelledby="telemetry-evidence">
+            <h3 id="telemetry-evidence">What the evidence supports</h3>
+            <p>Source contracts and existing test coverage describe replay, conflicts, restart continuity, backpressure, and retention gaps.</p>
+            <p>The portfolio does not claim a new production failover experiment, fixed query latency, or uptime. Observation age, delivery lag, and gaps qualify every finding.</p>
+          </section>
+        </div>
+
+        <figure class="diagram-plate" data-diagram="3">
+          <figcaption>
+            <div><span class="figure-index">Model 04 / Process</span><h3>From node observation to qualified analysis</h3></div>
+            <a class="diagram-link" href="assets/diagrams/04-telemetry-process.svg" data-view-diagram="3">View full size</a>
+          </figcaption>
+          <a class="diagram-image-link" href="assets/diagrams/04-telemetry-process.svg" data-view-diagram="3" aria-label="View model 04, telemetry process, at full size">
+            <img src="assets/diagrams/04-telemetry-process.svg" width="1801" height="1121" loading="lazy" alt="Telemetry process across node runtime, agent, collector, workstation pipeline, and analyst, including durable acknowledgement, archiving, SQL projection, and coverage checks.">
+          </a>
+          <p class="figure-note">Transport continuity and analytical completeness are separate questions.</p>
+        </figure>
+
+        <figure class="diagram-plate" data-diagram="4">
+          <figcaption>
+            <div><span class="figure-index">Model 05 / Lineage</span><h3>Durable collector, replayable archive, local SQL</h3></div>
+            <a class="diagram-link" href="assets/diagrams/05-telemetry-data-lineage.svg" data-view-diagram="4">View full size</a>
+          </figcaption>
+          <a class="diagram-image-link" href="assets/diagrams/05-telemetry-data-lineage.svg" data-view-diagram="4" aria-label="View model 05, telemetry data lineage, at full size">
+            <img src="assets/diagrams/05-telemetry-data-lineage.svg" width="1801" height="1121" loading="lazy" alt="Deployment and data lineage showing two producers pushing to a durable collector and a workstation fetching to checksummed zstd archives, checkpoints, and local GreptimeDB projection.">
+          </a>
+          <p class="figure-note">Preserved raw records support reprojection when queryable rows need rebuilding.</p>
+        </figure>
+
+        <details class="case-details">
+          <summary>What happens when the pipeline falls behind?</summary>
+          <div class="details-content">
+            <p>Within retained history, the workstation resumes from its durable cursor. Beyond the 36-hour horizon, the pipeline records a gap and marks coverage incomplete. Workstation acknowledgements do not extend retention.</p>
+            <p>Projection failures leave archived evidence available for retry or replay. Collector storage pressure produces visible publishing backpressure. Monitor observation age, retry rate, archive integrity, projection lag, explicit gaps, and collector disk headroom.</p>
+          </div>
+        </details>
+        <p class="case-visible-limit"><strong>Known limit:</strong> bounded hub storage trades an unlimited offline window for explicit coverage gaps. Collection cadence and archive finalization determine time to query.</p>
+      </article>
+
+      <article class="case-section content-width" id="mobile-operations" aria-labelledby="mobile-title">
+        <header class="case-heading">
+          <p class="case-number" aria-hidden="true">03<span>Mobile operations</span></p>
+          <div class="case-heading-copy">
+            <p class="eyebrow">Case study 03 / Access topology &amp; agent workflow</p>
+            <h2 id="mobile-title">A mobile terminal.<br>The existing workspace.</h2>
+            <p class="case-lead">A phone reaches the workstation through a dedicated relay. The terminal provides access to OpenCode, scoped agent tasks, and the local telemetry store already on the workstation.</p>
+            <ul class="technology-list" aria-label="Case technologies and concepts">
+              <li>Termux</li><li>WireGuard</li><li>SSH</li><li>OpenCode</li><li>Local SQL</li>
+            </ul>
+          </div>
+        </header>
+
+        <aside class="boundary" aria-labelledby="mobile-boundary">
+          <p class="boundary-label" id="mobile-boundary">Evidence boundary</p>
+          <p>The integrated OpenCode journey models <strong>operator-stated practice</strong>. It is not a newly measured mobile experiment. A reachable workstation can hold stale telemetry; access success and evidence freshness require separate checks.</p>
+        </aside>
+
+        <div class="case-reading-grid">
+          <section aria-labelledby="mobile-mechanism">
+            <h3 id="mobile-mechanism">The access path</h3>
+            <p>Phone and Termux reach workstation SSH through a WireGuard relay. The SSH session terminates on the workstation, where OpenCode assigns a scoped agent to query local SQL.</p>
+            <p>The agent returns findings with freshness, lag, and gap evidence. The operator reviews the interpretation and decides the next action.</p>
+          </section>
+          <section aria-labelledby="mobile-choice">
+            <h3 id="mobile-choice">The topology choice</h3>
+            <p>The relay and telemetry collector are separate servers. Six infrastructure endpoints participate: two producers, collector, relay, workstation, and phone.</p>
+            <p>“Triangulation” names the phone–relay–workstation access topology. It does not mean statistical corroboration. Software roles inside an endpoint do not add servers.</p>
+          </section>
+          <section class="evidence-column" aria-labelledby="mobile-evidence">
+            <h3 id="mobile-evidence">What the evidence supports</h3>
+            <p>Operational documentation records an end-to-end WireGuard mesh and key-based Termux SSH connection.</p>
+            <p>That supports the access path. The integrated agent journey remains a model of stated practice; no uptime or productivity gain is claimed.</p>
+          </section>
+        </div>
+
+        <figure class="diagram-plate" data-diagram="5">
+          <figcaption>
+            <div><span class="figure-index">Model 06 / Topology</span><h3>The access triangle and telemetry context</h3></div>
+            <a class="diagram-link" href="assets/diagrams/06-remote-operations-topology.svg" data-view-diagram="5">View full size</a>
+          </figcaption>
+          <a class="diagram-image-link" href="assets/diagrams/06-remote-operations-topology.svg" data-view-diagram="5" aria-label="View model 06, remote-operations topology, at full size">
+            <img src="assets/diagrams/06-remote-operations-topology.svg" width="1801" height="1121" loading="lazy" alt="Six-endpoint topology: two producers and a collector serve the workstation telemetry path, while a separate WireGuard relay connects phone and workstation for SSH access.">
+          </a>
+          <p class="figure-note">The remote-access path and telemetry-delivery path have different responsibilities.</p>
+        </figure>
+
+        <figure class="diagram-plate" data-diagram="6">
+          <figcaption>
+            <div><span class="figure-index">Model 07 / Sequence</span><h3>From phone session to qualified finding</h3></div>
+            <a class="diagram-link" href="assets/diagrams/07-mobile-analysis-sequence.svg" data-view-diagram="6">View full size</a>
+          </figcaption>
+          <a class="diagram-image-link" href="assets/diagrams/07-mobile-analysis-sequence.svg" data-view-diagram="6" aria-label="View model 07, mobile-analysis sequence, at full size">
+            <img src="assets/diagrams/07-mobile-analysis-sequence.svg" width="1801" height="1121" loading="lazy" alt="Sequence from Termux over WireGuard and SSH to an OpenCode scoped analysis agent, local SQL query, qualified evidence report, and operator review; background telemetry retrieval is independent.">
+          </a>
+          <p class="figure-note">An analysis request reads local evidence; it does not trigger fresh collection from every node.</p>
+        </figure>
+
+        <p class="case-visible-limit"><strong>Known limit:</strong> relay and workstation availability determine access. A tunnel handshake alone does not prove SSH reachability; local-data age determines how current an answer can be.</p>
+      </article>
+
+      <section class="materials" aria-labelledby="materials-title">
+        <div class="materials-inner content-width">
+          <div>
+            <p class="eyebrow">Keep the models useful</p>
+            <h2 id="materials-title">Read. Inspect.<br>Keep editing.</h2>
+            <p>The portfolio is available as seven PDF pages. The editable draw.io source contains the same seven models. Accompanying notes preserve the case context and evidence limits.</p>
+          </div>
+          <div class="material-links">
+            <a href="assets/portfolio.pdf" download="systems-portfolio.pdf"><span class="material-type">PDF / 7 pages</span><strong>Download the portfolio</strong></a>
+            <a href="assets/process-models.drawio" download="process-models.drawio"><span class="material-type">draw.io / 7 models</span><strong>Download editable source</strong></a>
+            <a href="https://gist.github.com/cargo-build/584359278fe027fe10929f3c08f7faf9"><span class="material-type">Gist / Case notes</span><strong>Read the source context</strong></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer content-width">
+      <p>Systems Portfolio</p>
+      <p>Mechanisms, decisions, and explicit limits.</p>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <dialog class="diagram-dialog" id="diagram-dialog" aria-labelledby="diagram-title" aria-describedby="diagram-instructions">
+      <div class="dialog-chrome" tabindex="0" role="region" aria-label="Diagram controls and instructions">
+        <div class="dialog-heading">
+          <div><p class="eyebrow" id="diagram-counter">Diagram 1 of 7</p><h2 id="diagram-title">From checkout to access processing</h2></div>
+          <form method="dialog"><button class="button button-dark" type="submit" autofocus>Close</button></form>
+        </div>
+        <div class="dialog-controls" role="group" aria-label="Diagram viewing controls">
+          <div class="control-group"><button type="button" id="diagram-previous">Previous</button><button type="button" id="diagram-next">Next</button></div>
+          <div class="control-group zoom-controls"><button type="button" id="diagram-zoom-out" aria-label="Zoom out">−</button><output id="diagram-zoom" aria-live="polite" aria-label="Zoom level">Fit</output><button type="button" id="diagram-zoom-in" aria-label="Zoom in">+</button><button type="button" id="diagram-fit">Fit to view</button></div>
+          <a id="diagram-original" href="assets/diagrams/01-purchase-process.svg">Open SVG</a>
+        </div>
+        <p class="dialog-instructions" id="diagram-instructions">Use [ and ] to browse, + and − to zoom, 0 to fit, or Escape to close. Focus the image area to scroll an enlarged model.</p>
+      </div>
+      <div class="diagram-viewport" id="diagram-viewport" tabindex="0" role="region" aria-label="Scrollable diagram">
+        <div class="diagram-canvas" id="diagram-canvas"><img id="diagram-full" src="assets/diagrams/01-purchase-process.svg" width="1801" height="1121" alt="Purchase-intent process diagram"></div>
+      </div>
+    </dialog>
+  </body>
+</html>
