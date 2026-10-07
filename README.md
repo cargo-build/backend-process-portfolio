@@ -1,8 +1,10 @@
-# Systems Portfolio
+# cargo-build — Engineering Portfolio
 
-An anonymized portfolio of three backend and operations case studies, illustrated
-with seven editable draw.io models. The page covers purchase-intent processing,
-distributed telemetry, and mobile access to an analysis workstation.
+A static Synthwave portfolio with a personal GitHub-avatar introduction, Python/Rust
+and Linux stack, and two project contexts: an anonymized Web2 video-streaming
+platform and Web3-related private trading work. Three supporting case studies cover
+purchase-intent processing, distributed telemetry, and mobile analysis through
+seven editable draw.io models.
 
 [Portfolio](https://cargo-build.github.io/backend-process-portfolio/) ·
 [Source repository](https://github.com/cargo-build/backend-process-portfolio)
@@ -15,7 +17,8 @@ or distributed exactly-once payment processing.
 
 | File | Responsibility |
 |---|---|
-| `site/index.html` | Page text, case sections, diagram descriptions, links, metadata |
+| `site/index.html` | Personal profile, project stacks, case text, diagrams, links, metadata |
+| `site/assets/profile-avatar.jpg` | Locally stored public GitHub avatar |
 | `site/styles.css` | Typography, colors, spacing, responsive layout |
 | `site/app.js` | Full-size diagram viewer and keyboard controls |
 | `site/assets/diagrams/*.svg` | Seven approved draw.io exports |
@@ -23,7 +26,13 @@ or distributed exactly-once payment processing.
 | `site/assets/portfolio.pdf` | Seven-page presentation download |
 | `.github/workflows/pages.yml` | Publish `site/` to GitHub Pages |
 
-Edit case text directly in `site/index.html`. Keep the existing section identifiers
+Edit profile, project-stack, and case text directly in `site/index.html`.
+Keep the profile and two project contexts before the analytical cases. The 11/7
+work signature is personal copy, without an inferred availability commitment.
+The operator supplied video experience dates of February 2025–September 2026 and
+private HFT / Web3 project dates of September 2026–present. Update the latter end
+date when appropriate; do not infer benchmarks or trading outcomes from “HFT”.
+Keep the existing section identifiers
 so navigation links remain stable. Add a case by following an existing section's
 semantic structure; update its navigation and figure labels in the same change.
 
@@ -91,7 +100,11 @@ manual run when republishing an unchanged revision is necessary.
 
 ## Content rules
 
-- MUST use generic roles and conceptual mechanisms in all published material.
+- MUST use generic project roles and conceptual mechanisms in published material.
+- MAY show the explicitly requested public cargo-build handle and avatar; do not
+  infer a full name or personal contact information.
+- MUST distinguish verified project stack, custom work, and upstream integrations.
+- SHOULD preserve the Synthwave palette and readable, unaltered diagram surfaces.
 - MUST omit employer and website identity, deployment aliases, real operational
   identifiers, addresses, credentials, private paths, and live operational data.
 - MUST preserve the cases' evidence boundaries and visible failure limits.

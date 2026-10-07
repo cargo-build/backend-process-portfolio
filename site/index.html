@@ -3,64 +3,97 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Three Rust backend and operations case studies, explained through seven editable process models, design decisions, and explicit evidence boundaries.">
-    <meta name="theme-color" content="#102732">
-    <title>Systems Portfolio — Rust backend &amp; process modelling</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23102732'/%3E%3Cpath d='M18 18h28v8H26v12h20v8H18z' fill='%23ff683a'/%3E%3C/svg%3E">
+    <meta name="description" content="cargo-build: Python for Data Analytics, Rust for blazing fast execution, and Linux systems. Explore Web2 and Web3-related project stacks through seven process models.">
+    <meta name="theme-color" content="#100a21">
+    <title>cargo-build — Python, Rust &amp; Systems</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23100a21'/%3E%3Cpath d='M26 18 12 32l14 14M38 18l14 14-14 14' fill='none' stroke='%2367e8ef' stroke-width='6'/%3E%3Cpath d='m35 13-6 38' stroke='%23f886dc' stroke-width='4'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Systems Portfolio, back to top">
-        <span class="brand-mark" aria-hidden="true">S</span>
-        <span>Systems<br>Portfolio</span>
+    <header class="site-header content-width">
+      <a class="brand" href="#top" aria-label="cargo-build, back to top">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span>cargo-build</span>
       </a>
-      <nav class="header-nav" aria-label="Case studies">
-        <a href="#purchase-intent"><span>01</span> Purchase intent</a>
-        <a href="#telemetry"><span>02</span> Telemetry</a>
-        <a href="#mobile-operations"><span>03</span> Mobile operations</a>
+      <nav class="header-nav" aria-label="Portfolio">
+        <a href="#projects">Projects</a>
+        <a href="#case-studies">Process models</a>
+        <a href="https://github.com/cargo-build">GitHub <span aria-hidden="true">↗</span></a>
       </nav>
-      <a class="header-download" href="assets/portfolio.pdf" download="systems-portfolio.pdf">Portfolio PDF</a>
     </header>
 
     <main id="main">
       <section class="hero" id="top" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">Rust backend engineering &amp; process modelling</p>
-          <h1 id="hero-title">Make the<br>system <em>legible.</em></h1>
-          <p class="hero-description">Follow the request. Locate the state change. Make the failure boundary explicit.</p>
-          <p class="hero-context">Three case studies connect backend mechanisms to the people and operations around them. Seven process models make the decisions inspectable.</p>
-          <div class="hero-actions">
-            <a class="button button-accent" href="#case-studies">Explore the cases</a>
-            <a class="hero-text-link" href="assets/portfolio.pdf" download="systems-portfolio.pdf">Download portfolio PDF</a>
+        <div class="hero-inner content-width">
+          <div class="profile-identity">
+            <p class="eyebrow">Python · Rust · Linux</p>
+            <h1 id="hero-title">cargo-build<span aria-hidden="true">.</span></h1>
+            <a class="profile-link" href="https://github.com/cargo-build">github.com/cargo-build <span aria-hidden="true">↗</span></a>
           </div>
-          <dl class="hero-facts">
-            <div><dt>Cases</dt><dd>03</dd></div>
-            <div><dt>Models</dt><dd>07</dd></div>
-            <div class="hero-facts-format"><dt>Material</dt><dd>Process · State · Data</dd></div>
-          </dl>
-        </div>
-        <div class="hero-work">
-          <div class="hero-work-heading">
-            <p class="eyebrow">A closer look / Case 01</p>
-            <span class="work-dot" aria-hidden="true"></span>
+          <div class="profile-art">
+            <a class="avatar-frame" href="https://github.com/cargo-build" aria-label="cargo-build on GitHub">
+              <img src="assets/profile-avatar.jpg" width="460" height="460" fetchpriority="high" alt="cargo-build's public GitHub avatar: an illustrated figure in a violet suit, in a neon-lit city workspace.">
+            </a>
+            <dl class="work-rhythm"><div><dt>Work rhythm</dt><dd>11/7</dd></div></dl>
           </div>
-          <a class="hero-preview" href="assets/diagrams/01-purchase-process.svg" data-view-diagram="0" aria-label="View the purchase-intent process diagram at full size">
-            <img src="assets/diagrams/01-purchase-process.svg" width="1801" height="1121" alt="Purchase workflow across customer, payment processing, provider, access processing, and support; an eligible intent claim precedes access dispatch.">
-            <span class="preview-label">View full-size process model</span>
-          </a>
-          <div class="hero-work-caption">
-            <span class="hero-model-number" aria-hidden="true">01</span>
-            <div>
-              <h2>One claim.<br>A clear boundary.</h2>
-              <p>A transactional claim controls access dispatch. The provider charge and remote access call remain separate operations.</p>
-              <a href="#purchase-intent">Read the purchase case</a>
+          <div class="hero-copy">
+            <div class="profile-focus">
+              <p><strong>Python</strong> for Data Analytics</p>
+              <p><strong>Rust</strong> for blazing fast execution</p>
+            </div>
+            <div class="hero-actions">
+              <a class="button button-accent" href="#projects">Explore projects <span aria-hidden="true">↘</span></a>
+              <a class="hero-text-link" href="#case-studies">Read the process models <span aria-hidden="true">↓</span></a>
             </div>
           </div>
+          <dl class="linux-context">
+            <div><dt>Desktop</dt><dd><strong>NixOS + Niri</strong> for desktop comfort</dd></div>
+            <div><dt>VPS</dt><dd><strong>Alpine Linux</strong> for efficient VPS operations</dd></div>
+          </dl>
         </div>
+      </section>
+
+      <section class="projects content-width" id="projects" aria-labelledby="projects-title">
+        <header class="section-introduction">
+          <div><p class="eyebrow">Project contexts</p><h2 id="projects-title">Two stacks.<br>Different systems.</h2></div>
+          <p>From video delivery to trading research and operations. The stack has a role; the models make that role inspectable.</p>
+        </header>
+
+        <article class="project" aria-labelledby="streaming-title">
+          <div class="project-overview">
+            <p class="project-category"><span>Web2</span> Anonymized professional project</p>
+            <p class="project-period">February 2025–September 2026</p>
+            <h3 id="streaming-title">Video Streaming<br> Platform</h3>
+            <p class="project-description">Backend services for video delivery, subscriptions, and access processing.</p>
+            <p class="project-tooling">Supporting stack: Axum REST gateway; Docker, Kubernetes, and Helm for build and deployment configuration.</p>
+            <a class="project-case-link" href="#purchase-intent">Explore the purchase-intent case <span aria-hidden="true">↗</span></a>
+          </div>
+          <dl class="stack-groups">
+            <div><dt>Media &amp; delivery</dt><dd>FFmpeg / ffprobe <span>·</span> HLS <span>·</span> CDN<br>S3-compatible storage <span class="stack-detail">Adaptive HLS and CUDA/NVENC templates; CDN URL resolution and entitlement-checked presigned downloads.</span></dd></div>
+            <div><dt>Backend &amp; service transport</dt><dd>Rust / Tokio <span>·</span> gRPC (tonic / Prost)<br>PostgreSQL / SeaORM</dd></div>
+            <div><dt>Event analytics</dt><dd>Kafka / rdkafka <span>·</span> ClickHouse</dd></div>
+            <div><dt>Playback frontend</dt><dd>TypeScript <span>·</span> React / Next.js <span>·</span> Shaka Player</dd></div>
+          </dl>
+        </article>
+
+        <article class="project project-trading" aria-labelledby="trading-title">
+          <div class="project-overview">
+            <p class="project-category"><span>Web3-related</span> Private HFT project</p>
+            <p class="project-period">September 2026–present</p>
+            <h3 id="trading-title">nautilus-trading</h3>
+            <p class="project-description">HFT research, execution, and operations around upstream NautilusTrader. Custom Rust nodes, a shared Python policy bridge, and upstream venue integrations.</p>
+            <div class="project-case-links"><a class="project-case-link" href="#telemetry">Distributed telemetry <span aria-hidden="true">↗</span></a><a class="project-case-link" href="#mobile-operations">Mobile operations <span aria-hidden="true">↗</span></a></div>
+          </div>
+          <dl class="stack-groups">
+            <div><dt>Custom nodes &amp; operations</dt><dd>Rust / Tokio</dd></div>
+            <div><dt>Research &amp; shared policy</dt><dd>Python <span>·</span> PyO3 / maturin<br>Arrow <span>·</span> Parquet <span>·</span> Polars</dd></div>
+            <div><dt>Operations telemetry</dt><dd>mTLS gRPC / Protobuf <span>·</span> redb <span>·</span> zstd<br>GreptimeDB <span class="stack-detail">SQL projection through the PostgreSQL wire protocol.</span></dd></div>
+            <div><dt>Upstream venue adapters</dt><dd>Polymarket <span>·</span> Lighter <span>·</span> Hyperliquid <span class="stack-detail">Integrations use upstream NautilusTrader adapters.</span></dd></div>
+          </dl>
+        </article>
       </section>
 
       <section class="case-index content-width" id="case-studies" aria-labelledby="index-title">
@@ -321,9 +354,9 @@
     </main>
 
     <footer class="site-footer content-width">
-      <p>Systems Portfolio</p>
+      <a class="footer-identity" href="https://github.com/cargo-build">cargo-build</a>
       <p>Mechanisms, decisions, and explicit limits.</p>
-      <a href="#top">Back to top</a>
+      <div class="footer-links"><a href="https://github.com/cargo-build/backend-process-portfolio">Site source <span aria-hidden="true">↗</span></a><a href="#top">Back to top ↑</a></div>
     </footer>
 
     <dialog class="diagram-dialog" id="diagram-dialog" aria-labelledby="diagram-title" aria-describedby="diagram-instructions">

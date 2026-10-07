@@ -15,8 +15,14 @@ Read `README.md` for the file map, preview, and publication workflow.
   triangulation where the cases do not establish them.
 - MUST keep case content in semantic HTML. The diagram viewer is a progressive
   enhancement; direct image links and downloads MUST work without JavaScript.
-- SHOULD preserve the established navy/white/orange editorial design, responsive
+- SHOULD preserve the profile-first Synthwave direction: dark violet, cyan/magenta
+  accents, restrained glow, and readable diagram surfaces. MUST preserve responsive
   behavior, keyboard access, reduced-motion preference, and 200% text enlargement.
+- MAY show the explicitly requested public cargo-build GitHub handle and locally
+  stored avatar. DO NOT infer a full name, contact details, bio, or seniority.
+- MUST distinguish the anonymized Web2 streaming platform from Web3-related private
+  trading work, and upstream venue adapters from custom implementation.
+- MUST keep the personal 11/7 signature literal; do not turn it into a measured SLA.
 - MUST keep draw.io source, SVG exports, PDF, and case explanations consistent.
 
 Keep task scratch, screenshots, logs, credentials, and runtime browser state outside
