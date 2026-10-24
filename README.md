@@ -6,8 +6,8 @@ platform and Web3-related private trading work. Three supporting case studies co
 purchase-intent processing, distributed telemetry, and mobile analysis through
 seven editable draw.io models.
 
-[Portfolio](https://cargo-build.github.io/backend-process-portfolio/) ·
-[Source repository](https://github.com/cargo-build/backend-process-portfolio)
+[Portfolio](https://cargo-build.github.io/) ·
+[Source repository](https://github.com/cargo-build/cargo-build.github.io)
 
 The cases explain mechanisms, responsibilities, and failure boundaries. They do
 not claim measured commercial impact, a production rollout of the purchase feature,
