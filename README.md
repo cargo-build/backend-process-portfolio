@@ -1,8 +1,9 @@
 # Viacheslav Karakin — Engineering Portfolio
 
 A static Synthwave portfolio with a personal GitHub-avatar introduction, Python/Rust
-and Linux stack, and two project contexts: an anonymized Web2 video-streaming
-platform and Web3-related private trading work. Three supporting case studies cover
+and Linux stack, and three project contexts: an anonymized Web2 video-streaming
+platform, Web3-related private trading work still in progress, and game development
+in an indie studio. Three supporting case studies cover
 purchase-intent processing, distributed telemetry, and mobile analysis through
 seven editable draw.io models.
 
@@ -27,13 +28,15 @@ or distributed exactly-once payment processing.
 | `.github/workflows/pages.yml` | Publish `site/` to GitHub Pages |
 
 Edit profile, project-stack, and case text directly in `site/index.html`.
-Keep the profile and two project contexts before the analytical cases.
+Keep the profile and three project contexts before the analytical cases.
 Use a moderate personal-name heading with readable body and labels; avoid a giant
 name above tiny supporting text. Adjust responsive CSS overrides together. The 11/7
 work signature is personal copy, without an inferred availability commitment.
-The operator supplied video experience dates of February 2025–September 2026 and
-private HFT / Web3 project dates of September 2026–present. Update the latter end
-date when appropriate; do not infer benchmarks or trading outcomes from “HFT”.
+The operator supplied video experience dates of February 2025–July 2026 (employer
+ForEachPartners, product unnamed), own HFT / Web3 project dates of August 2026–present
+still in progress, and indie-studio game development from October 2026. Keep the
+trading project marked unfinished; do not infer benchmarks or trading outcomes from
+“HFT”.
 Keep the existing section identifiers
 so navigation links remain stable. Add a case by following an existing section's
 semantic structure; update its navigation and figure labels in the same change.

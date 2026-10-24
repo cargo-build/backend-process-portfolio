@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Viacheslav Karakin: Python for Data Analytics, Rust for blazing fast execution, and Linux systems. Explore Web2 and Web3-related project stacks through seven process models.">
+    <meta name="description" content="Viacheslav Karakin: Python for Data Analytics, Rust for blazing fast execution, and Linux systems. Explore Web2, Web3-related, and game-development project stacks through seven process models.">
     <meta name="theme-color" content="#100a21">
     <title>Viacheslav Karakin — Python, Rust &amp; Systems</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23100a21'/%3E%3Cpath d='M26 18 12 32l14 14M38 18l14 14-14 14' fill='none' stroke='%2367e8ef' stroke-width='6'/%3E%3Cpath d='m35 13-6 38' stroke='%23f886dc' stroke-width='4'/%3E%3C/svg%3E">
@@ -58,14 +58,14 @@
 
       <section class="projects content-width" id="projects" aria-labelledby="projects-title">
         <header class="section-introduction">
-          <div><p class="eyebrow">Project contexts</p><h2 id="projects-title">Two stacks.<br>Different systems.</h2></div>
-          <p>From video delivery to trading research and operations. The stack has a role; the models make that role inspectable.</p>
+          <div><p class="eyebrow">Project contexts</p><h2 id="projects-title">Three stacks.<br>Different systems.</h2></div>
+          <p>From video delivery to trading research, operations, and game development. The stack has a role; the models make that role inspectable.</p>
         </header>
 
         <article class="project" aria-labelledby="streaming-title">
           <div class="project-overview">
-            <p class="project-category"><span>Web2</span> Anonymized professional project</p>
-            <p class="project-period">February 2025–September 2026</p>
+            <p class="project-category"><span>Web2</span> ForEachPartners · anonymized product</p>
+            <p class="project-period">February 2025–July 2026</p>
             <h3 id="streaming-title">Video Streaming<br> Platform</h3>
             <p class="project-description">Backend services for video delivery, subscriptions, and access processing.</p>
             <p class="project-tooling">Supporting stack: Axum REST gateway; Docker, Kubernetes, and Helm for build and deployment configuration.</p>
@@ -81,8 +81,8 @@
 
         <article class="project project-trading" aria-labelledby="trading-title">
           <div class="project-overview">
-            <p class="project-category"><span>Web3-related</span> Private HFT project</p>
-            <p class="project-period">September 2026–present</p>
+            <p class="project-category"><span>Web3-related</span> Own HFT project</p>
+            <p class="project-period">August 2026–present · in progress, unfinished</p>
             <h3 id="trading-title">nautilus-trading</h3>
             <p class="project-description">HFT research, execution, and operations around upstream NautilusTrader. Custom Rust nodes, a shared Python policy bridge, and upstream venue integrations.</p>
             <div class="project-case-links"><a class="project-case-link" href="#telemetry">Distributed telemetry <span aria-hidden="true">↗</span></a><a class="project-case-link" href="#mobile-operations">Mobile operations <span aria-hidden="true">↗</span></a></div>
@@ -92,6 +92,20 @@
             <div><dt>Research &amp; shared policy</dt><dd>Python <span>·</span> PyO3 / maturin<br>Arrow <span>·</span> Parquet <span>·</span> Polars</dd></div>
             <div><dt>Operations telemetry</dt><dd>mTLS gRPC / Protobuf <span>·</span> redb <span>·</span> zstd<br>GreptimeDB <span class="stack-detail">SQL projection through the PostgreSQL wire protocol.</span></dd></div>
             <div><dt>Upstream venue adapters</dt><dd>Polymarket <span>·</span> Lighter <span>·</span> Hyperliquid <span class="stack-detail">Integrations use upstream NautilusTrader adapters.</span></dd></div>
+          </dl>
+        </article>
+
+        <article class="project" aria-labelledby="gamedev-title">
+          <div class="project-overview">
+            <p class="project-category"><span>Game dev</span> Indie studio</p>
+            <p class="project-period">October 2026–present</p>
+            <h3 id="gamedev-title">Indie Game<br> Studio</h3>
+            <p class="project-description">Game development in an indie studio: engine work plus a 3D, generative-art, VFX, and sound pipeline.</p>
+          </div>
+          <dl class="stack-groups">
+            <div><dt>Engines &amp; gameplay</dt><dd>Unity <span>·</span> Bevy / Rust</dd></div>
+            <div><dt>3D &amp; tooling</dt><dd>Blender <span>·</span> Tripo3D <span>·</span> Python <span class="stack-detail">Tripo3D for image- and text-to-3D base assets; Python for pipeline scripting.</span></dd></div>
+            <div><dt>Generative content</dt><dd>GPT Image 2.5 <span>·</span> Seedance 2.0<br>ElevenLabs SFX <span class="stack-detail">Concept art, VFX, and sound effects.</span></dd></div>
           </dl>
         </article>
       </section>
